@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int numOfUnplacedFruits(vector<int>& fruits, vector<int>& baskets) {
+        sort(fruits.rbegin(), fruits.rend());  // Sort fruits in descending order
+        sort(baskets.rbegin(), baskets.rend()); // Sort baskets in descending order
+
+        int i = 0, j = 0, unplaced = 0;
+
+        while (i < fruits.size()) {
+            if (j < baskets.size() && baskets[j] >= fruits[i]) {
+                j++; // Place fruit in the basket
+            } else {
+                unplaced++; // Fruit remains unplaced
+            }
+            i++;
+        }
+        return unplaced;
+    }
+};
+
+int main() {
+    Solution sol;
+    vector<int> fruits = {3, 5, 2, 4};
+    vector<int> baskets = {5, 3, 1};
+    cout << sol.numOfUnplacedFruits(fruits, baskets) << endl;  
+    return 0;
+}
